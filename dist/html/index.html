@@ -29,8 +29,8 @@
                 <input type="search" name="search" id="inputSearch">
             </div>
 
-            <select name="" id="">
-                <option value="filter">Filter By Region</option>
+            <select name="" id="filterOption" onchange="PopulateCards()">
+                <option value="">Filter By Region</option>
                 <option value="africa">Africa</option>
                 <option value="america">America</option>
                 <option value="asia">Asia</option>
@@ -39,7 +39,7 @@
             </select>
         </div>
 
-    <div class="grid-container"></div>
+    <div class="grid-container" id="overviewCards"></div>
         <div class="overview-card">
             
         </div>
