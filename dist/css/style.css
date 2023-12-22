@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    background-color: hsl(0, 0%, 98%);
+    color: black;
+
+}
+
+header{
+    padding: 2rem 1rem;
+    background-color:hsl(0, 0%, 100%)
+    
+}
+
+.shadow{
+    box-shadow: 0px 0px 10px -8px black;
+}
+
+.hide{
+    display: none;
+}
+
+.flex-container-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.flex-container-col{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+   
+
+.gap-025{
+    gap: 0.4rem;
+}
+
+.title{
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.button{
+    border: none;
+    background-color: transparent;
+    text-align: center;
+}
+
+.option-card{
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+}
+
+.search-bar{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    gap: 2rem;
+    padding-left: 2rem;
+    background-color: hsl(0, 0%, 100%);
+    
+}
+
+.input-search::placeholder{
+   color: rgba(216, 216, 216, 1);
+}
+
+
+.input-search{    
+    border: none; 
+}
+
+.input-search:focus{
+    outline: none;
+    
+}
+.overview{
+    margin: 0 1rem;
+}
+
+.select-option{
+    width: 50%;
+    padding: 1rem;
+    border: none;
+    font-weight: 300;
+}
+
+.select-option:focus{
+    outline: none;
+}
+
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(1fr);
+    gap:2rem;
+}
+
+.overview-card{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    background-color: hsl(0, 0%, 100%);
+}
+
+h2{
+    margin: 1rem 0;
+}
+.info-header{
+    font-weight: 800;
+}
+
+.info-text{
+    font-weight: 300;
+}
+

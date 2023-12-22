@@ -57,28 +57,42 @@ function CreateCards(country) {
     //Create card Div
     let divEl = document.createElement("div");
     divEl.classList.add("overview-card");
+    divEl.classList.add("shadow");
     overviewCards === null || overviewCards === void 0 ? void 0 : overviewCards.appendChild(divEl);
     //Create Image Element
     let imgEl = document.createElement("img");
     imgEl.setAttribute("src", country.flags.png);
     divEl.appendChild(imgEl);
+    //Create name el
+    let nameEl = document.createElement("h2");
+    nameEl.textContent = country.name.common;
+    divEl.appendChild(nameEl);
     //Create p Elements
     // population El
     let populationEl = document.createElement("p");
     populationEl.textContent = "Population: ";
-    populationEl.innerHTML += `<span class="infoText">${country.population}</span`;
-    populationEl.classList.add("infoHeader");
+    populationEl.innerHTML += `<span class="info-text">${country.population.toLocaleString("en-GB")}</span`;
+    populationEl.classList.add("info-header");
     divEl.appendChild(populationEl);
     // Region El
     let regionEl = document.createElement("p");
-    regionEl.textContent = "Region:";
-    regionEl.innerHTML += `<span class="infoText">${country.region}</span`;
-    regionEl.classList.add("infoHeader");
+    regionEl.textContent = "Region: ";
+    regionEl.innerHTML += `<span class="info-text">${country.region}</span`;
+    regionEl.classList.add("info-header");
     divEl.appendChild(regionEl);
     // Region El
     let capitalEl = document.createElement("p");
-    capitalEl.textContent = "Capital:";
-    capitalEl.innerHTML += `<span class="infoText">${country.capital}</span`;
-    capitalEl.classList.add("infoHeader");
+    capitalEl.textContent = "Capital: ";
+    capitalEl.innerHTML += `<span class="info-text">${country.capital}</span`;
+    capitalEl.classList.add("info-header");
     divEl.appendChild(capitalEl);
+    divEl.addEventListener("click", function () {
+        OpenInfoView(country);
+    });
+}
+function OpenInfoView(country) {
+    console.log("info view opens");
+    //Close overview
+    //Open info view
+    //Populate info view with country info
 }
