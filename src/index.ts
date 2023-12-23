@@ -31,6 +31,9 @@ const infoLanguages: HTMLElement | null = document.getElementById("infoLanguages
 const borderButtons: HTMLElement |null = document.getElementById("borderButtons");
 
 
+//Search el
+const inputSearch = document.getElementById("inputSearch") as HTMLInputElement | null;
+
 interface Country{
     altSpellings:string[],
     name:{
@@ -75,7 +78,14 @@ function RefreshPage(){
 
 homeButton?.addEventListener("click",RefreshPage);
 backButton?.addEventListener("click",SwitchView);
+/* inputSearch?.addEventListener("keyup", Search); */
 PopulateCards();
+
+
+function Search(){
+    console.log(inputSearch?.value);
+    PopulateCards()
+}
 
 function SwitchView(){
     if(overviewModul?.classList.contains("hide")){
@@ -102,15 +112,15 @@ function SwitchView(){
 async function PopulateCards(){
     let countrys: Country[] = await FetchCountries();
 
-    console.log(filterOption?.value);
+    
     RemoveCards();
     countrys.forEach(country => { 
 
         let filterValue = filterOption?.value.toLowerCase();
-        if(country.region.toLowerCase() === filterValue || filterValue === ""){     
+        if(country.region.toLowerCase() === filterValue && country.name.common.toLowerCase().includes(inputSearch!.value) || filterValue === "" && country.name.common.toLowerCase().includes(inputSearch!.value)){     
             CreateCards(country);           
         }
-
+        
     });
 }
 
@@ -122,7 +132,7 @@ function RemoveCards(){
 
 
 function CreateCards(country:Country){
-    console.log("creating stuff"); 
+
     //Create card Div
     let divEl = document.createElement("div");
     divEl.classList.add("overview-card");

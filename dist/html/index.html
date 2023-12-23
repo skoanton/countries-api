@@ -34,7 +34,7 @@
                 <img src="../../images/lightMode/search-ligtmode2.svg" alt="">
                 
                 <input type="search" name="search" id="inputSearch" class="input-search"
-                    placeholder="Search for country.." onfocus="this.placeholder =''" onblur="this.placeholder = 'Search for country..'">
+                    placeholder="Search for country.." onfocus="this.placeholder =''" onblur="this.placeholder = 'Search for country..'" onkeyup="Search()">
             </div>
 
             <select name="" id="filterOption" class="select-option shadow" onchange="PopulateCards()">
@@ -59,28 +59,32 @@
             Back
         </button>
         <div class="info-card">
+            <img id="infoImg" src="" alt="">
             <div class="general-info">
-                <img id="infoImg" src="" alt="">
+                
                 <h3 id="infoName"></h3>
                 <p class="info-header">Native Name: <span class="info-text" id="infoNativeName"></span></p>
                 <p class="info-header">Population: <span class="info-text" id="infoPopulation"></span></p>
                 <p class="info-header">Region: <span class="info-text" id="infoRegion"></span></p>
                 <p class="info-header">Sub Region: <span class="info-text" id="infoSubRegion"></span></p>
                 <p class="info-header">Capital: <span class="info-text" id="infoCapital"></span></p>
-            </div>
 
-            <div class="other-info">
-                <p class="info-header">Top Level Domain: <span class="info-text" id="infoTopLevelDomain"></span></p>
-                <p class="info-header">Currencies: <span class="info-text" id="infoCurrencies"></span></p>
-                <p class="info-header">Languages: <span class="info-text" id="infoLanguages"></span></p>
-            </div>
-
-            <div class="border-contries">
-                <h2>Border Contries:</h2>
-                <div id="borderButtons" class="border-box">
-                    
+                <div class="border-contries">
+                    <h2>Border Contries:</h2>
+                    <div id="borderButtons" class="border-box">
+                        
+                    </div>
+                </div>
+                <div class="other-info">
+                    <p class="info-header">Top Level Domain: <span class="info-text" id="infoTopLevelDomain"></span></p>
+                    <p class="info-header">Currencies: <span class="info-text" id="infoCurrencies"></span></p>
+                    <p class="info-header">Languages: <span class="info-text" id="infoLanguages"></span></p>
                 </div>
             </div>
+
+            
+
+            
            
 
         </div>

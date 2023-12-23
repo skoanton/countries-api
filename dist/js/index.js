@@ -31,6 +31,8 @@ const infoTopLevelDomain = document.getElementById("infoTopLevelDomain");
 const infoCurrencies = document.getElementById("infoCurrencies");
 const infoLanguages = document.getElementById("infoLanguages");
 const borderButtons = document.getElementById("borderButtons");
+//Search el
+const inputSearch = document.getElementById("inputSearch");
 function FetchCountries() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -55,7 +57,12 @@ function RefreshPage() {
 }
 homeButton === null || homeButton === void 0 ? void 0 : homeButton.addEventListener("click", RefreshPage);
 backButton === null || backButton === void 0 ? void 0 : backButton.addEventListener("click", SwitchView);
+/* inputSearch?.addEventListener("keyup", Search); */
 PopulateCards();
+function Search() {
+    console.log(inputSearch === null || inputSearch === void 0 ? void 0 : inputSearch.value);
+    PopulateCards();
+}
 function SwitchView() {
     if (overviewModul === null || overviewModul === void 0 ? void 0 : overviewModul.classList.contains("hide")) {
         overviewModul.classList.remove("hide");
@@ -73,11 +80,10 @@ function SwitchView() {
 function PopulateCards() {
     return __awaiter(this, void 0, void 0, function* () {
         let countrys = yield FetchCountries();
-        console.log(filterOption === null || filterOption === void 0 ? void 0 : filterOption.value);
         RemoveCards();
         countrys.forEach(country => {
             let filterValue = filterOption === null || filterOption === void 0 ? void 0 : filterOption.value.toLowerCase();
-            if (country.region.toLowerCase() === filterValue || filterValue === "") {
+            if (country.region.toLowerCase() === filterValue && country.name.common.toLowerCase().includes(inputSearch.value) || filterValue === "" && country.name.common.toLowerCase().includes(inputSearch.value)) {
                 CreateCards(country);
             }
         });
@@ -90,7 +96,6 @@ function RemoveCards() {
     ;
 }
 function CreateCards(country) {
-    console.log("creating stuff");
     //Create card Div
     let divEl = document.createElement("div");
     divEl.classList.add("overview-card");
