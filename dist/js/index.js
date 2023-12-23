@@ -30,6 +30,7 @@ const infoCapital = document.getElementById("infoCapital");
 const infoTopLevelDomain = document.getElementById("infoTopLevelDomain");
 const infoCurrencies = document.getElementById("infoCurrencies");
 const infoLanguages = document.getElementById("infoLanguages");
+const borderButtons = document.getElementById("borderButtons");
 function FetchCountries() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -58,11 +59,9 @@ PopulateCards();
 function SwitchView() {
     if (overviewModul === null || overviewModul === void 0 ? void 0 : overviewModul.classList.contains("hide")) {
         overviewModul.classList.remove("hide");
-        overviewModul.classList.add("flex-container-col");
     }
     else {
         overviewModul === null || overviewModul === void 0 ? void 0 : overviewModul.classList.add("hide");
-        overviewModul === null || overviewModul === void 0 ? void 0 : overviewModul.classList.remove("flex-container-col");
     }
     if (infoViewModul === null || infoViewModul === void 0 ? void 0 : infoViewModul.classList.contains("hide")) {
         infoViewModul === null || infoViewModul === void 0 ? void 0 : infoViewModul.classList.remove("hide");
@@ -132,6 +131,9 @@ function OpenInfoView(country) {
     console.log("info view opens");
     SwitchView();
     overviewModul === null || overviewModul === void 0 ? void 0 : overviewModul.classList.add("hide");
+    while (borderButtons === null || borderButtons === void 0 ? void 0 : borderButtons.firstChild) {
+        borderButtons.firstChild.remove();
+    }
     //Open info view
     infoViewModul === null || infoViewModul === void 0 ? void 0 : infoViewModul.classList.remove("hide");
     console.log(country);
@@ -144,8 +146,21 @@ function OpenInfoView(country) {
     infoSubRegion.textContent = country.subregion;
     infoCapital.textContent = country.capital[0];
     infoTopLevelDomain.textContent = country.cca2;
-    infoCurrencies.textContent = country.currencies.constructor.name.toString();
+    /* infoCurrencies!.textContent = country.currencies.constructor.name.toString();
+    console.log(country.languages);
     country.languages.forEach(lang => {
-        infoLanguages.textContent += ` ${lang}`;
-    });
+        infoLanguages!.textContent += ` ${lang}`;
+    }); */
+    if (country.borders && country.borders.length > 0) {
+        country.borders.forEach(countryBorder => {
+            let buttonEl = document.createElement("button");
+            buttonEl.textContent = countryBorder;
+            borderButtons === null || borderButtons === void 0 ? void 0 : borderButtons.appendChild(buttonEl);
+        });
+    }
+    else {
+        let pEl = document.createElement("p");
+        pEl.textContent = "No Borders";
+        borderButtons === null || borderButtons === void 0 ? void 0 : borderButtons.appendChild(pEl);
+    }
 }

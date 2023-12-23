@@ -22,9 +22,7 @@ header{
     box-shadow: 0px 0px 10px -8px black;
 }
 
-.hide{
-    display: none;
-}
+
 
 .flex-container-row{
     display: flex;
@@ -103,7 +101,9 @@ header{
 
 .grid-container{
     display: grid;
-    grid-template-columns: repeat(1fr);
+    justify-content: center;
+    grid-template-columns: (5);
+    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
     gap:2rem;
 }
 
@@ -113,6 +113,9 @@ header{
     gap: 0.25rem;
     padding: 1rem;
     background-color: hsl(0, 0%, 100%);
+    /* min-width: min-content; */
+    
+    
 }
 
 h2{
@@ -126,4 +129,46 @@ h2{
     font-weight: 300;
 }
 
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: none;
+    padding: 0.5rem 1rem;
 
+}
+
+.info-view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 2rem;
+}
+
+.border-box{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px,1fr));
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+    margin-bottom: 1rem;
+}
+
+.back-button{
+   justify-self: flex-start;
+   max-width: max-content;
+   margin: 2rem 0;
+}
+
+.general-info, .other-info, .info-card{
+    display: flex;
+    flex-direction: column;
+    gap:0.75rem;
+}
+
+
+.hide{
+    display: none;
+}

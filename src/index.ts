@@ -28,6 +28,8 @@ const infoCurrencies: HTMLElement | null = document.getElementById("infoCurrenci
 const infoLanguages: HTMLElement | null = document.getElementById("infoLanguages");
 
 
+const borderButtons: HTMLElement |null = document.getElementById("borderButtons");
+
 
 interface Country{
     altSpellings:string[],
@@ -78,11 +80,11 @@ PopulateCards();
 function SwitchView(){
     if(overviewModul?.classList.contains("hide")){
         overviewModul.classList.remove("hide");
-        overviewModul.classList.add("flex-container-col");
+        
     }
     else{
         overviewModul?.classList.add("hide");
-        overviewModul?.classList.remove("flex-container-col");
+        
     }
 
     if(infoViewModul?.classList.contains("hide")){
@@ -170,6 +172,9 @@ function OpenInfoView(country:Country){
     SwitchView();
     overviewModul?.classList.add("hide");
     
+    while(borderButtons?.firstChild){
+        borderButtons.firstChild.remove();
+    }
     
     //Open info view
     infoViewModul?.classList.remove("hide");
@@ -183,10 +188,25 @@ function OpenInfoView(country:Country){
     infoSubRegion!.textContent = country.subregion;
     infoCapital!.textContent = country.capital[0];
     infoTopLevelDomain!.textContent = country.cca2;
-    infoCurrencies!.textContent = country.currencies.constructor.name.toString();
+    /* infoCurrencies!.textContent = country.currencies.constructor.name.toString();
+    console.log(country.languages);
     country.languages.forEach(lang => {
         infoLanguages!.textContent += ` ${lang}`;
-    });
+    }); */
+    if(country.borders && country.borders.length > 0){
+        country.borders.forEach(countryBorder => {
+            let buttonEl = document.createElement("button");
+            buttonEl.textContent = countryBorder;
+            borderButtons?.appendChild(buttonEl);
+        });
+    }
+
+    else{
+        let pEl = document.createElement("p");
+        pEl.textContent = "No Borders";
+        borderButtons?.appendChild(pEl);
+    }
+    
     
 }
 
