@@ -11,8 +11,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const BASE_URL = "https://restcountries.com/v3.1/all";
 const tempURL = "https://restcountries.com/v3.1/all";
 //Elements
+const homeButton = document.getElementById("homeButton");
+const backButton = document.getElementById("backButton");
 const overviewCards = document.getElementById("overviewCards");
 const filterOption = document.getElementById("filterOption");
+const overviewModul = document.getElementById("overview");
+const infoViewModul = document.getElementById("infoView");
+// Info-card
+//General
+const infoImg = document.getElementById("infoImg");
+const infoName = document.getElementById("infoName");
+const infoNativeName = document.getElementById("infoNativeName");
+const infoPopulation = document.getElementById("infoPopulation");
+const infoRegion = document.getElementById("infoRegion");
+const infoSubRegion = document.getElementById("infoSubRegion");
+const infoCapital = document.getElementById("infoCapital");
+//Other infoo
+const infoTopLevelDomain = document.getElementById("infoTopLevelDomain");
+const infoCurrencies = document.getElementById("infoCurrencies");
+const infoLanguages = document.getElementById("infoLanguages");
 function FetchCountries() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -32,7 +49,28 @@ function FetchCountries() {
         }
     });
 }
+function RefreshPage() {
+    window.location.reload();
+}
+homeButton === null || homeButton === void 0 ? void 0 : homeButton.addEventListener("click", RefreshPage);
+backButton === null || backButton === void 0 ? void 0 : backButton.addEventListener("click", SwitchView);
 PopulateCards();
+function SwitchView() {
+    if (overviewModul === null || overviewModul === void 0 ? void 0 : overviewModul.classList.contains("hide")) {
+        overviewModul.classList.remove("hide");
+        overviewModul.classList.add("flex-container-col");
+    }
+    else {
+        overviewModul === null || overviewModul === void 0 ? void 0 : overviewModul.classList.add("hide");
+        overviewModul === null || overviewModul === void 0 ? void 0 : overviewModul.classList.remove("flex-container-col");
+    }
+    if (infoViewModul === null || infoViewModul === void 0 ? void 0 : infoViewModul.classList.contains("hide")) {
+        infoViewModul === null || infoViewModul === void 0 ? void 0 : infoViewModul.classList.remove("hide");
+    }
+    else {
+        infoViewModul === null || infoViewModul === void 0 ? void 0 : infoViewModul.classList.add("hide");
+    }
+}
 function PopulateCards() {
     return __awaiter(this, void 0, void 0, function* () {
         let countrys = yield FetchCountries();
@@ -92,7 +130,22 @@ function CreateCards(country) {
 }
 function OpenInfoView(country) {
     console.log("info view opens");
-    //Close overview
+    SwitchView();
+    overviewModul === null || overviewModul === void 0 ? void 0 : overviewModul.classList.add("hide");
     //Open info view
+    infoViewModul === null || infoViewModul === void 0 ? void 0 : infoViewModul.classList.remove("hide");
+    console.log(country);
     //Populate info view with country info
+    infoImg === null || infoImg === void 0 ? void 0 : infoImg.setAttribute("src", country.flags.png);
+    infoName.textContent = country.name.common;
+    infoNativeName.textContent = country.altSpellings[1];
+    infoPopulation.textContent = country.population.toLocaleString("en-GB");
+    infoRegion.textContent = country.region;
+    infoSubRegion.textContent = country.subregion;
+    infoCapital.textContent = country.capital[0];
+    infoTopLevelDomain.textContent = country.cca2;
+    infoCurrencies.textContent = country.currencies.constructor.name.toString();
+    country.languages.forEach(lang => {
+        infoLanguages.textContent += ` ${lang}`;
+    });
 }

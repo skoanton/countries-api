@@ -3,8 +3,31 @@ const tempURL = "https://restcountries.com/v3.1/all"
 
 
 //Elements
+const homeButton:HTMLElement | null = document.getElementById("homeButton");
+const backButton:HTMLElement | null = document.getElementById("backButton");
+
+
 const overviewCards : HTMLElement | null = document.getElementById("overviewCards");
 const filterOption: HTMLSelectElement | null  = document.getElementById("filterOption") as HTMLSelectElement | null;
+const overviewModul: HTMLElement | null = document.getElementById("overview");
+const infoViewModul: HTMLElement| null = document.getElementById("infoView");
+
+// Info-card
+//General
+const infoImg = document.getElementById("infoImg") as HTMLImageElement |null;
+const infoName :HTMLElement | null = document.getElementById("infoName");
+const infoNativeName: HTMLElement | null = document.getElementById("infoNativeName");
+const infoPopulation: HTMLElement | null = document.getElementById("infoPopulation");
+const infoRegion: HTMLElement | null = document.getElementById("infoRegion");
+const infoSubRegion: HTMLElement | null = document.getElementById("infoSubRegion");
+const infoCapital: HTMLElement | null = document.getElementById("infoCapital");
+
+//Other infoo
+const infoTopLevelDomain: HTMLElement | null = document.getElementById("infoTopLevelDomain");
+const infoCurrencies: HTMLElement | null = document.getElementById("infoCurrencies");
+const infoLanguages: HTMLElement | null = document.getElementById("infoLanguages");
+
+
 
 interface Country{
     altSpellings:string[],
@@ -14,9 +37,9 @@ interface Country{
     population:number,
     region:string,
     capital:string[],
-    subreigon: string,
+    subregion: string,
     cca2:string;
-    currencies:string[],
+    currencies:{},
     languages:string[],
     flags:{
         png:string,
@@ -44,12 +67,39 @@ async function FetchCountries(): Promise<Country[]>{
         
     }
 }
+function RefreshPage(){
+    window.location.reload();
+}
 
-
+homeButton?.addEventListener("click",RefreshPage);
+backButton?.addEventListener("click",SwitchView);
 PopulateCards();
+
+function SwitchView(){
+    if(overviewModul?.classList.contains("hide")){
+        overviewModul.classList.remove("hide");
+        overviewModul.classList.add("flex-container-col");
+    }
+    else{
+        overviewModul?.classList.add("hide");
+        overviewModul?.classList.remove("flex-container-col");
+    }
+
+    if(infoViewModul?.classList.contains("hide")){
+        infoViewModul?.classList.remove("hide");
+        
+    }
+
+    else{
+        infoViewModul?.classList.add("hide");
+    }
+
+
+}
 
 async function PopulateCards(){
     let countrys: Country[] = await FetchCountries();
+
     console.log(filterOption?.value);
     RemoveCards();
     countrys.forEach(country => { 
@@ -117,10 +167,29 @@ function CreateCards(country:Country){
 
 function OpenInfoView(country:Country){
     console.log("info view opens");
-    //Close overview
+    SwitchView();
+    overviewModul?.classList.add("hide");
+    
+    
     //Open info view
+    infoViewModul?.classList.remove("hide");
+    console.log(country);
     //Populate info view with country info
-
+    infoImg?.setAttribute("src",country.flags.png);
+    infoName!.textContent = country.name.common;
+    infoNativeName!.textContent =  country.altSpellings[1];
+    infoPopulation!.textContent = country.population.toLocaleString("en-GB");
+    infoRegion!.textContent = country.region;
+    infoSubRegion!.textContent = country.subregion;
+    infoCapital!.textContent = country.capital[0];
+    infoTopLevelDomain!.textContent = country.cca2;
+    infoCurrencies!.textContent = country.currencies.constructor.name.toString();
+    country.languages.forEach(lang => {
+        infoLanguages!.textContent += ` ${lang}`;
+    });
+    
 }
+
+
 
 

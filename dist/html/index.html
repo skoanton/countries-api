@@ -21,7 +21,7 @@
 
 <body>
     <header class="flex-container-row shadow">
-        <h1 class="title">Where in the world?</h1>
+        <h1 class="title" id="homeButton">Where in the world?</h1>
         <button class="button flex-container-row gap-025" id="buttonDarkMode">
             <img src="../../images/lightMode/bx-moon.svg" alt="">
             
@@ -54,13 +54,36 @@
     </article>
 
     <article class="hide" id="infoView">
-        <button>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z" />
-            </svg>
+        <button id="backButton">
+            <img src="../../images/bx-arrow-back.svg" alt="">
             Back
         </button>
-        <div class="info-card"></div>
+        <div class="info-card">
+            <div class="general-info">
+                <img id="infoImg" src="" alt="">
+                <h2 id="infoName"></h2>
+                <p class="info-header">Native Name: <span class="info-text" id="infoNativeName"></span></p>
+                <p class="info-header">Population: <span class="info-text" id="infoPopulation"></span></p>
+                <p class="info-header">Region: <span class="info-text" id="infoRegion"></span></p>
+                <p class="info-header">Sub Region: <span class="info-text" id="infoSubRegion"></span></p>
+                <p class="info-header">Capital: <span class="info-text" id="infoCapital"></span></p>
+            </div>
+
+            <div class="other-info">
+                <p class="info-header">Top Level Domain: <span class="info-text" id="infoTopLevelDomain"></span></p>
+                <p class="info-header">Currencies: <span class="info-text" id="infoCurrencies"></span></p>
+                <p class="info-header">Languages: <span class="info-text" id="infoLanguages"></span></p>
+            </div>
+
+            <div class="border-contries">
+                <h2>Border Contries:</h2>
+                <div id="borderButtons">
+                    
+                </div>
+            </div>
+           
+
+        </div>
     </article>
 
 
